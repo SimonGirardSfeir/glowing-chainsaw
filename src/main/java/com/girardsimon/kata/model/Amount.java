@@ -11,7 +11,7 @@ public class Amount {
     }
 
     public static Amount of(int value) {
-        return null;
+        return new Amount(value);
     }
 
     @Override
