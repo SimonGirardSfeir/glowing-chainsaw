@@ -11,4 +11,10 @@ class AmountTest {
         //Given...When...Then
         assertThat(new Amount(1000)).isEqualTo(new Amount(1000));
     }
+
+    @Test
+    void amount_should_be_not_equal_to_other_amount_when_values_are_different() {
+        //Given...When...Then
+        assertThat(new Amount(1000)).isNotEqualTo(new Amount(200));
+    }
 }
