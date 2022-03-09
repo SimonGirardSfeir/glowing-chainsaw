@@ -15,7 +15,7 @@ public class Amount {
     }
 
     public Amount plus(Amount otherAmount) {
-        return null;
+        return of(this.value + otherAmount.value);
     }
 
     @Override
