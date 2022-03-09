@@ -14,6 +14,10 @@ public class Amount {
         return new Amount(value);
     }
 
+    public Amount plus(Amount otherAmount) {
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

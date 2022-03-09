@@ -30,4 +30,18 @@ class AmountTest {
         //Then
         assertThat(actualAmount).isEqualTo(givenAmount);
     }
+
+    @Test
+    void plus_should_add_amount() {
+        //Given
+        Amount givenAmount1 = new Amount(400);
+        Amount givenAmount2 = new Amount(600);
+
+        //When
+        Amount actualAmount = givenAmount1.plus(givenAmount2);
+
+        //Then
+        Amount expectedAmount = new Amount(1000);
+        assertThat(actualAmount).isEqualTo(expectedAmount);
+    }
 }
