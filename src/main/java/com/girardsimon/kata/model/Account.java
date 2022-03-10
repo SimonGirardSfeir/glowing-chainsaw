@@ -13,6 +13,8 @@ public class Account {
     }
 
     public void withdraw(int value) {
+        Amount sub = Amount.of(value).negative();
+        this.balance = balance.plus(sub);
     }
 
     public Amount getBalance() {
