@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Statement {
 
-    List<StatementLine> statementLines = new ArrayList<>();
+    private final List<StatementLine> statementLines = new ArrayList<>();
 
     public void addStatementLine(StatementLine statementLine) {
         statementLines.add(statementLine);
