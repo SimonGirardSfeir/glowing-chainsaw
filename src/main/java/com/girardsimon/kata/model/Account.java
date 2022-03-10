@@ -18,12 +18,16 @@ public class Account {
 
     public void deposit(Amount amount, LocalDate date) {
         this.balance = balance.plus(amount);
-        statement.addStatementLine(new StatementLine(DEPOSIT, amount, balance, date));
+        addStatement(DEPOSIT, amount, date);
     }
 
     public void withdraw(Amount amount, LocalDate date) {
         this.balance = balance.plus(amount.negative());
-        statement.addStatementLine(new StatementLine(WITHDRAW, amount, balance, date));
+        addStatement(WITHDRAW, amount, date);
+    }
+
+    private void addStatement(StatementType statementType, Amount amount, LocalDate date) {
+        statement.addStatementLine(new StatementLine(statementType, amount, balance, date));
     }
 
     public Statement getStatement() {
