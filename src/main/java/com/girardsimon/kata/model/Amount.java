@@ -18,8 +18,8 @@ public class Amount {
         return of(this.value + otherAmount.value);
     }
 
-    public boolean isGreaterThan(Amount otherAmounbt) {
-        return false;
+    public boolean isGreaterThan(Amount otherAmount) {
+        return this.value > otherAmount.value;
     }
 
     @Override
