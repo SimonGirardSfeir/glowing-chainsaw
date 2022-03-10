@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static com.girardsimon.kata.model.Amount.of;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.byLessThan;
 
 class AmountTest {
 
