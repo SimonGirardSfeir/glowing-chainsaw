@@ -2,31 +2,39 @@ package com.girardsimon.kata.model;
 
 import org.junit.jupiter.api.Test;
 
+import static com.girardsimon.kata.model.StatementType.DEPOSIT;
+import static com.girardsimon.kata.model.StatementType.WITHDRAW;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AccountTest {
 
     @Test
-    void deposit_should_add_credit_on_bank_account() {
+    void deposit_should_update_statement_on_bank_account() {
         //Given
-        Account givenAccount = new Account(500);
+        Account givenAccount = new Account(Amount.of(500));
 
         //When
-        givenAccount.deposit(1000);
+        givenAccount.deposit(Amount.of(1000));
 
         //Then
-        assertThat(givenAccount.getBalance()).isEqualTo(Amount.of(1500));
+        StatementLine expectedStatementLine = new StatementLine(DEPOSIT, Amount.of(1000), Amount.of(1500));
+        Statement expectedStatement = new Statement();
+        expectedStatement.addStatementLine(expectedStatementLine);
+        assertThat(givenAccount.getStatement()).isEqualTo(expectedStatement);
     }
 
     @Test
-    void withdraw_should_add_credit_on_bank_account() {
+    void withdraw_should_update_statement_on_bank_account() {
         //Given
-        Account givenAccount = new Account(1500);
+        Account givenAccount = new Account(Amount.of(1500));
 
         //When
-        givenAccount.withdraw(400);
+        givenAccount.withdraw(Amount.of(400));
 
         //Then
-        assertThat(givenAccount.getBalance()).isEqualTo(Amount.of(1100));
+        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(400), Amount.of(1100));
+        Statement expectedStatement = new Statement();
+        expectedStatement.addStatementLine(expectedStatementLine);
+        assertThat(givenAccount.getStatement()).isEqualTo(expectedStatement);
     }
 }
