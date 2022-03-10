@@ -47,21 +47,24 @@ class AccountTest {
         account.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
 
         //Then
-        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(-400), Amount.of(100), LocalDate.of(2022, 2, 15));
+        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(400), Amount.of(100), LocalDate.of(2022, 2, 15));
         verify(statement).addStatementLine(expectedStatementLine);
     }
 
     @Test
     void should_print_statement() {
+        //Given
+        Statement givenStatement = new Statement();
+        Account givenAccount = new Account(givenStatement);
+
         //When
         System.setOut(new PrintStream(outContent));
-        account.deposit(Amount.of(1000), LocalDate.of(2022, 2, 2));
-        account.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
-        account.printStatement();
+        givenAccount.deposit(Amount.of(1000), LocalDate.of(2022, 2, 2));
+        givenAccount.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
+        givenAccount.printStatement();
 
         //Then
-        assertThat(outContent.toString()).contains("DEPOSIT - 01-01-2022 - 500 - 500");
-        assertThat(outContent.toString()).contains("DEPOSIT - 01-01-2022 - 1000 - 1500");
-        assertThat(outContent.toString()).contains("WITHDRAW - 01-01-2022 - 400 - 1100");
+        assertThat(outContent.toString()).contains("DEPOSIT - 2022-02-02 - 1000 - 1000");
+        assertThat(outContent.toString()).contains("WITHDRAW - 2022-02-15 - 400 - 600");
     }
 }

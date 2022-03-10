@@ -23,4 +23,9 @@ public class Statement {
     public int hashCode() {
         return Objects.hash(statementLines);
     }
+
+    @Override
+    public String toString() {
+        return statementLines.toString();
+    }
 }

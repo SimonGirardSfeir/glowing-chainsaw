@@ -72,4 +72,17 @@ class AmountTest {
         Amount expectedAmount = new Amount(-1000);
         assertThat(actualAmount).isEqualTo(expectedAmount);
     }
+
+    @Test
+    void absoluteValue_should_return_appropriate_amount() {
+        //Given
+        Amount givenAmount = new Amount(-1000);
+
+        //When
+        Amount actualAmount = givenAmount.absoluteValue();
+
+        //Then
+        Amount expectedAmount = new Amount(1000);
+        assertThat(actualAmount).isEqualTo(expectedAmount);
+    }
 }

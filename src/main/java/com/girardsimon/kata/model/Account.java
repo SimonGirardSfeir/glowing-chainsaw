@@ -25,10 +25,11 @@ public class Account {
 
     private void addStatement(StatementType statementType, Amount amount, LocalDate date) {
         Amount balanceAfterStatementLine = balance.plus(amount);
-        statement.addStatementLine(new StatementLine(statementType, amount, balanceAfterStatementLine, date));
+        statement.addStatementLine(new StatementLine(statementType, amount.absoluteValue(), balanceAfterStatementLine, date));
         balance = balanceAfterStatementLine;
     }
 
     public void printStatement() {
+        System.out.println(statement);
     }
 }

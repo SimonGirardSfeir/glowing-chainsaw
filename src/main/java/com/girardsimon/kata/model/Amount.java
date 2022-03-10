@@ -2,13 +2,7 @@ package com.girardsimon.kata.model;
 
 import java.util.Objects;
 
-public class Amount {
-
-    private final int value;
-
-    public Amount(int value) {
-        this.value = value;
-    }
+public record Amount(int value) {
 
     public static Amount of(int value) {
         return new Amount(value);
@@ -26,6 +20,10 @@ public class Amount {
         return of(-value);
     }
 
+    public Amount absoluteValue() {
+        return of(Math.abs(value));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,5 +35,10 @@ public class Amount {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }
