@@ -1,11 +1,16 @@
 package com.girardsimon.kata.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 
 import static com.girardsimon.kata.model.StatementType.DEPOSIT;
 import static com.girardsimon.kata.model.StatementType.WITHDRAWAL;
 
 public class Account {
+
+    private static final Logger log = LoggerFactory.getLogger(Account.class);
 
     private Amount balance = Amount.of(0);
 
@@ -30,6 +35,7 @@ public class Account {
     }
 
     public void printStatement() {
-        System.out.println(statement);
+        String statementToPrint = statement.toString();
+        log.info(statementToPrint);
     }
 }
