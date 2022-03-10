@@ -22,6 +22,10 @@ public class Amount {
         return this.value > otherAmount.value;
     }
 
+    public Amount negative() {
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

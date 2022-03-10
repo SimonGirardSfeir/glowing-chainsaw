@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.girardsimon.kata.model.Amount.of;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.byLessThan;
 
 class AmountTest {
 
@@ -58,5 +59,18 @@ class AmountTest {
         //Then
         assertThat(isGivenAmount1GreaterThanAmount2).isFalse();
         assertThat(isGivenAmount2GreaterThanAmount1).isTrue();
+    }
+
+    @Test
+    void toNegative_should_return_appropriate_amount() {
+        //Given
+        Amount givenAmount = new Amount(1000);
+
+        //When
+        Amount actualAmount = givenAmount.negative();
+
+        //Then
+        Amount expectedAmount = new Amount(-1000);
+        assertThat(actualAmount).isEqualTo(expectedAmount);
     }
 }
