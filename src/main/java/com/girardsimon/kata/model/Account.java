@@ -12,6 +12,9 @@ public class Account {
         this.balance = balance.plus(Amount.of(value));
     }
 
+    public void withdraw(int value) {
+    }
+
     public Amount getBalance() {
         return balance;
     }
