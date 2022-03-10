@@ -1,12 +1,11 @@
 package com.girardsimon.kata.model;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 public class Statement {
 
-    List<StatementLine> statementLines = new LinkedList<>();
+    LinkedList<StatementLine> statementLines = new LinkedList<>();
 
     public void addStatementLine(StatementLine statementLine) {
         statementLines.add(statementLine);

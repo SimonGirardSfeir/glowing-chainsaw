@@ -7,30 +7,25 @@ import static com.girardsimon.kata.model.StatementType.WITHDRAW;
 
 public class Account {
 
-    private Amount balance;
+    private Amount balance = Amount.of(0);
 
     private final Statement statement;
 
-    public Account(Amount initialAmount) {
-        this.balance = initialAmount;
-        this.statement = new Statement();
+    public Account(Statement statement) {
+        this.statement = statement;
     }
 
     public void deposit(Amount amount, LocalDate date) {
-        this.balance = balance.plus(amount);
         addStatement(DEPOSIT, amount, date);
     }
 
     public void withdraw(Amount amount, LocalDate date) {
-        this.balance = balance.plus(amount.negative());
-        addStatement(WITHDRAW, amount, date);
+        addStatement(WITHDRAW, amount.negative(), date);
     }
 
     private void addStatement(StatementType statementType, Amount amount, LocalDate date) {
-        statement.addStatementLine(new StatementLine(statementType, amount, balance, date));
-    }
-
-    public Statement getStatement() {
-        return statement;
+        Amount balanceAfterStatementLine = balance.plus(amount);
+        statement.addStatementLine(new StatementLine(statementType, amount, balanceAfterStatementLine, date));
+        balance = balanceAfterStatementLine;
     }
 }
