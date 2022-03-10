@@ -28,4 +28,7 @@ public class Account {
         statement.addStatementLine(new StatementLine(statementType, amount, balanceAfterStatementLine, date));
         balance = balanceAfterStatementLine;
     }
+
+    public void printStatement() {
+    }
 }

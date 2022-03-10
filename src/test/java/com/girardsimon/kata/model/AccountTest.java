@@ -6,6 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 
 import static com.girardsimon.kata.model.StatementType.DEPOSIT;
@@ -15,6 +17,8 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class AccountTest {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Mock
     private Statement statement;
@@ -45,5 +49,19 @@ class AccountTest {
         //Then
         StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(-400), Amount.of(100), LocalDate.of(2022, 2, 15));
         verify(statement).addStatementLine(expectedStatementLine);
+    }
+
+    @Test
+    void should_print_statement() {
+        //When
+        System.setOut(new PrintStream(outContent));
+        account.deposit(Amount.of(1000), LocalDate.of(2022, 2, 2));
+        account.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
+        account.printStatement();
+
+        //Then
+        assertThat(outContent.toString()).contains("DEPOSIT - 01-01-2022 - 500 - 500");
+        assertThat(outContent.toString()).contains("DEPOSIT - 01-01-2022 - 1000 - 1500");
+        assertThat(outContent.toString()).contains("WITHDRAW - 01-01-2022 - 400 - 1100");
     }
 }
