@@ -2,6 +2,8 @@ package com.girardsimon.kata.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static com.girardsimon.kata.model.StatementType.DEPOSIT;
 import static com.girardsimon.kata.model.StatementType.WITHDRAW;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,10 +16,10 @@ class AccountTest {
         Account givenAccount = new Account(Amount.of(500));
 
         //When
-        givenAccount.deposit(Amount.of(1000));
+        givenAccount.deposit(Amount.of(1000), LocalDate.of(2022, 2, 2));
 
         //Then
-        StatementLine expectedStatementLine = new StatementLine(DEPOSIT, Amount.of(1000), Amount.of(1500));
+        StatementLine expectedStatementLine = new StatementLine(DEPOSIT, Amount.of(1000), Amount.of(1500), LocalDate.of(2022, 2, 2));
         Statement expectedStatement = new Statement();
         expectedStatement.addStatementLine(expectedStatementLine);
         assertThat(givenAccount.getStatement()).isEqualTo(expectedStatement);
@@ -29,10 +31,10 @@ class AccountTest {
         Account givenAccount = new Account(Amount.of(1500));
 
         //When
-        givenAccount.withdraw(Amount.of(400));
+        givenAccount.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
 
         //Then
-        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(400), Amount.of(1100));
+        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(400), Amount.of(1100), LocalDate.of(2022, 2, 15));
         Statement expectedStatement = new Statement();
         expectedStatement.addStatementLine(expectedStatementLine);
         assertThat(givenAccount.getStatement()).isEqualTo(expectedStatement);
