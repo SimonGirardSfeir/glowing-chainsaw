@@ -11,7 +11,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 
 import static com.girardsimon.kata.model.StatementType.DEPOSIT;
-import static com.girardsimon.kata.model.StatementType.WITHDRAW;
+import static com.girardsimon.kata.model.StatementType.WITHDRAWAL;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
@@ -47,7 +47,7 @@ class AccountTest {
         account.withdraw(Amount.of(400), LocalDate.of(2022, 2, 15));
 
         //Then
-        StatementLine expectedStatementLine = new StatementLine(WITHDRAW, Amount.of(400), Amount.of(100), LocalDate.of(2022, 2, 15));
+        StatementLine expectedStatementLine = new StatementLine(WITHDRAWAL, Amount.of(400), Amount.of(100), LocalDate.of(2022, 2, 15));
         verify(statement).addStatementLine(expectedStatementLine);
     }
 
@@ -65,6 +65,6 @@ class AccountTest {
 
         //Then
         assertThat(outContent.toString()).contains("DEPOSIT - 2022-02-02 - 1000 - 1000");
-        assertThat(outContent.toString()).contains("WITHDRAW - 2022-02-15 - 400 - 600");
+        assertThat(outContent.toString()).contains("WITHDRAWAL - 2022-02-15 - 400 - 600");
     }
 }

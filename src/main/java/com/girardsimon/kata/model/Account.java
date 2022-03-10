@@ -3,7 +3,7 @@ package com.girardsimon.kata.model;
 import java.time.LocalDate;
 
 import static com.girardsimon.kata.model.StatementType.DEPOSIT;
-import static com.girardsimon.kata.model.StatementType.WITHDRAW;
+import static com.girardsimon.kata.model.StatementType.WITHDRAWAL;
 
 public class Account {
 
@@ -20,7 +20,7 @@ public class Account {
     }
 
     public void withdraw(Amount amount, LocalDate date) {
-        addStatement(WITHDRAW, amount.negative(), date);
+        addStatement(WITHDRAWAL, amount.negative(), date);
     }
 
     private void addStatement(StatementType statementType, Amount amount, LocalDate date) {
