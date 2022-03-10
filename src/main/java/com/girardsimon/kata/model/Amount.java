@@ -23,7 +23,7 @@ public class Amount {
     }
 
     public Amount negative() {
-        return null;
+        return of(-value);
     }
 
     @Override
