@@ -44,4 +44,19 @@ class AmountTest {
         Amount expectedAmount = new Amount(1000);
         assertThat(actualAmount).isEqualTo(expectedAmount);
     }
+
+    @Test
+    void isGreaterThan_should_return_appropriate_boolean() {
+        //Given
+        Amount givenAmount1 = new Amount(400);
+        Amount givenAmount2 = new Amount(600);
+
+        //When
+        boolean isGivenAmount1GreaterThanAmount2 = givenAmount1.isGreaterThan(givenAmount2);
+        boolean isGivenAmount2GreaterThanAmount1 = givenAmount2.isGreaterThan(givenAmount1);
+
+        //Then
+        assertThat(isGivenAmount1GreaterThanAmount2).isFalse();
+        assertThat(isGivenAmount2GreaterThanAmount1).isTrue();
+    }
 }

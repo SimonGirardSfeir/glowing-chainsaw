@@ -18,6 +18,10 @@ public class Amount {
         return of(this.value + otherAmount.value);
     }
 
+    public boolean isGreaterThan(Amount otherAmounbt) {
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
